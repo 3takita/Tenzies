@@ -4,15 +4,12 @@ import Die from "./components/Die";
 
 export default function App() {
   /**
-   * Challenge:
+   * Challenge: Update the array of numbers in state to be
+   * an array of objects instead. Each object should look like:
+   * { value: <random number>, isHeld: false }
    *
-   * Create state to hold our array of numbers. (Initialize
-   * the state by calling our `allNewDice` function so it
-   * loads all new dice as soon as the app loads)
-   *
-   * Map over the state numbers array to generate our array
-   * of Die elements and render those in place of our
-   * manually-written 10 Die elements.
+   * Making this change will break parts of our code, so make
+   * sure to update things so we're back to a working state
    */
   const [dice, setDice] = React.useState(allNewDice());
 
@@ -21,7 +18,10 @@ export default function App() {
     const min = 1;
     const arr = [];
     for (let i = 0; i < 10; i++) {
-      arr.push(Math.floor(Math.random() * (max - min) + min));
+      arr.push({
+        value: Math.floor(Math.random() * (max - min) + min),
+        isHeld: false
+      });
     }
     return arr;
   }
