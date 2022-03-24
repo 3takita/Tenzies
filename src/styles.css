@@ -40,7 +40,7 @@ body {
 .button {
   border: none;
   height: 35px;
-  margin-top: 30px;
+  margin-top: 0px;
   background-color: #5035ff;
   color: white;
   width: 80px;
@@ -55,4 +55,15 @@ body {
 }
 .button:active {
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+h1 {
+  margin-bottom: -5px;
+  margin-top: 0px;
+  text-justify: center;
+}
+h3 {
+  margin-top: 0px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 19px;
 }
