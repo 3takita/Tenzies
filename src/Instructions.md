@@ -63,3 +63,11 @@ _/
 * 2.  Add an effect that runs every time the `dice` state array
 * changes. For now, just console.log("Dice state changed").
   \*/
+  /\*\*
+* 8: Check the dice array for these winning conditions:
+* 1.  All dice are held, and
+* 2.  all dice have the same value
+*
+* If both conditions are true, set `tenzies` to true and log
+* "You won!" to the console
+  \*/
