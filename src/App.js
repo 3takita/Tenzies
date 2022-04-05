@@ -2,16 +2,17 @@ import "./styles.css";
 import { nanoid } from "nanoid";
 import React from "react";
 import Die from "./components/Die";
+import Confetti from "react-confetti";
 
 export default function App() {
   /**
-   * Challenge: Check the dice array for these winning conditions:
-   * 1. All dice are held, and
-   * 2. all dice have the same value
+   * Challenge: Tie off loose ends!
+   * 1. If tenzies is true, Change the button text to "New Game"
+   * 2. If tenzies is true, use the "react-confetti" package to
+   *    render the <Confetti /> component 🎉
    *
-   * If both conditions are true, set `tenzies` to true and log
-   * "You won!" to the console
-   */
+   *    Hint: don't worry about the `height` and `width` props
+   *    it mentions in the documentation. */
   const [dice, setDice] = React.useState(allNewDice());
   const [tenzies, setTenzies] = React.useState(false);
 
@@ -82,11 +83,16 @@ export default function App() {
   ));
   //function that rolls the dice
   function roll() {
-    setDice((oldDice) =>
-      oldDice.map((old) => {
-        return old.isHeld ? old : generateNewDice();
-      })
-    );
+    if (!tenzies) {
+      setDice((oldDice) =>
+        oldDice.map((old) => {
+          return old.isHeld ? old : generateNewDice();
+        })
+      );
+    } else {
+      setTenzies(false);
+      setDice(allNewDice);
+    }
   }
   //function for holding dice
   function holdDice(id) {
@@ -98,11 +104,13 @@ export default function App() {
   }
   //Conditional styling for button
   const aba = {
-    width: `${tenzies ? "130px" : "80px"}`
+    width: `${tenzies ? "130px" : "80px"}`,
+    height: `${tenzies ? "50px" : "35px"}`
   };
 
   return (
     <main className="frame">
+      {tenzies && <Confetti />}
       <h1>Tenzies</h1>
       <h3>
         Roll until all dice are the same. Click each die to freeze it at its
@@ -110,7 +118,7 @@ export default function App() {
       </h3>
       <div className="dice-container">{diceElement}</div>
       <button style={aba} className="button" onClick={roll}>
-        {tenzies ? "You Won" : "Roll"}
+        {tenzies ? "New Game" : "Roll"}
       </button>
     </main>
   );
